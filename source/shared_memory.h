@@ -30,26 +30,34 @@ struct ipm_shared_memory_block_T
 };
 typedef struct ipm_shared_memory_block_T ipm_shared_memory_block;
 
+IPM_INTERNAL_FUNCTION
 ipm_result shared_memory_block_create(
         const ipm_context* context, const char* block_name, ipm_id id, size_t size, ipm_access_mode access,
         ipm_shared_memory_block* p_block);
 
+IPM_INTERNAL_FUNCTION
 ipm_result shared_memory_block_open(
         const ipm_context* context, const char* block_name, ipm_id id, ipm_access_mode access, ipm_shared_memory_block* p_block);
 
+IPM_INTERNAL_FUNCTION
 ipm_result shared_memory_block_close(
         const ipm_context* context, ipm_shared_memory_block* block,
         void (* callback)(void* param), void* param);
 
+IPM_INTERNAL_FUNCTION
 ipm_result shared_memory_block_clean(ipm_shared_memory_block* block);
 
+IPM_INTERNAL_FUNCTION
 ipm_result acquire_memory_block_whole(const ipm_context* context, ipm_shared_memory_block* block);
 
+IPM_INTERNAL_FUNCTION
 ipm_result release_memory_block_whole(const ipm_context* context, ipm_shared_memory_block* block);
 
+IPM_INTERNAL_FUNCTION
 ipm_result shared_memory_block_update_mapping(
         const ipm_context* context, ipm_shared_memory_block* block, ipm_access_mode access_mode);
 
+IPM_INTERNAL_FUNCTION
 ipm_result shared_memory_block_resize(const ipm_context* context, ipm_shared_memory_block* block, size_t new_size);
 
 #endif //IPM_SHARED_MEMORY_H

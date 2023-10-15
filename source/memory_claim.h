@@ -30,18 +30,25 @@ struct ipm_claim_list_T
 };
 typedef struct ipm_claim_list_T ipm_claim_list;
 
+IPM_INTERNAL_FUNCTION
 ipm_bool claim_encompasses_other(const ipm_memory_claim* claim_1, const ipm_memory_claim* claim_2);
 
+IPM_INTERNAL_FUNCTION
 ipm_bool claims_conflict(const ipm_memory_claim* claim_1, const ipm_memory_claim* claim_2);
 
+IPM_INTERNAL_FUNCTION
 ipm_result claim_add_to_list(const ipm_memory_claim* claim, ipm_claim_list* list);
 
+IPM_INTERNAL_FUNCTION
 ipm_result claim_remove_from_list(ipm_id claim_id, ipm_claim_list* list);
 
+IPM_INTERNAL_FUNCTION
 ipm_result claims_iterate(ipm_claim_list* list, int(*callback)(const ipm_memory_claim* claim, void* param), void* param);
 
+IPM_INTERNAL_FUNCTION
 ipm_result claim_list_init(ipm_claim_list* list, size_t capacity);
 
+IPM_INTERNAL_FUNCTION
 void claim_list_uninit(ipm_claim_list* list);
 
 #endif //IPM_MEMORY_CLAIM_H

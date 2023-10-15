@@ -7,6 +7,7 @@
 #include "../include/ipm/ipm_memory.h"
 #include "shared_memory.h"
 #include "memory_claim.h"
+#include "internal.h"
 
 struct ipm_memory_T
 {
@@ -25,6 +26,7 @@ enum ipm_memory_block_T
 };
 typedef enum ipm_memory_block_T ipm_memory_block;
 
+IPM_INTERNAL_FUNCTION
 ipm_claim_list* internal_ipm_memory_clam_list(ipm_memory* memory);
 
 #endif //IPM_MEMORY_INTERNAL_H

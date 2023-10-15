@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "../include/ipm/ipm_common.h"
+#include "internal.h"
 
 void* ipm_alloc_real(const ipm_context* context, size_t size, const char* file, int line, const char* function)
 {

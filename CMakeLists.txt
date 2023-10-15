@@ -16,6 +16,7 @@ add_library(ipm STATIC
         source/memory_claim.h
         source/ipm_memory.c
         include/ipm/ipm_memory.h
+        source/internal.h
 )
 
 

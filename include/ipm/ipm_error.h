@@ -45,8 +45,18 @@ enum ipm_result_T
     IPM_RESULT_COUNT,
 };
 
+/**
+ * Translates the enum value of ipm_result to a text representation
+ * @param res Value to translate
+ * @return Text representation of the parameter, or "Unknown" if it is not a valid value
+ */
 const char* ipm_result_to_str(ipm_result res);
 
+/**
+ * Translates the enum value of ipm_result to the full error message
+ * @param res Value to translate
+ * @return Full error message for the parameter, or "Unknown" if it is not a valid value
+ */
 const char* ipm_result_to_msg(ipm_result res);
 
 #endif //IPM_IPM_ERROR_H

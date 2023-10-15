@@ -3,6 +3,7 @@
 //
 
 #include "shared_memory.h"
+#include "internal.h"
 
 #ifdef IPM_PLATFORM_POSIX
 
@@ -336,7 +337,7 @@ ipm_result shared_memory_block_update_mapping(
         const ipm_context* context, ipm_shared_memory_block* block, ipm_access_mode access_mode)
 {
     const size_t new_size = block->header->block_size;
-    if (block->size == new_size && access_mode == block->access_mode)
+    if (block->size == new_size && access_mode == block->access_mode && block->memory != 0)
     {
         //  Block size has not changed
         return IPM_RESULT_SUCCESS;

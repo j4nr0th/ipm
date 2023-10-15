@@ -5,15 +5,9 @@
 #ifndef IPM_IPM_COMMON_H
 #define IPM_IPM_COMMON_H
 #include <stdint.h>
-#include <assert.h>
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <stdatomic.h>
+#include <stddef.h>
 
 typedef uint64_t ipm_id;
-typedef uint_fast8_t ipm_bool;
-
 
 enum
 {
@@ -32,26 +26,42 @@ typedef enum ipm_access_mode_T ipm_access_mode;
 
 struct ipm_context_T
 {
+    /**
+     * Used to report additional information about an error when it occurs
+     * @param msg Error message
+     * @param file The name of the file where the error was reported
+     * @param line The line where the error was reported in the file
+     * @param function The function where the error was reported from
+     * @param param Value of ipm_context::report_param
+     */
     void (*report_callback)(const char* msg, const char* file, int line, const char* function, void* param);
+    /**
+     * Value passed to ipm_context::report_callback as its last argument
+     */
     void* report_param;
+    /**
+     * Callback that will be used to allocate memory ipm_memory needs internally, as well as for error reporting
+     * @param alloc_param Value of ipm_context::alloc_param
+     * @param size Size of the memory allocation that is required
+     * @return A valid pointer to a region of memory of at least size bytes
+     */
     void* (*alloc_callback)(void* alloc_param, size_t size);
+    /**
+     * Value passed to ipm_context::alloc_callback as its first argument
+     */
     void* alloc_param;
+    /**
+     * Callback that will be used to deallocate memory ipm_memory no longer needs internally, as well as for error
+     * reporting
+     * @param free_param Value of ipm_context::free_param
+     * @param ptr Pointer previously obtained from a call to ipm_context::alloc_callback
+     */
     void (*free_callback)(void* free_param, void* ptr);
+    /**
+     * Value passed to ipm_context::free_callback as its first argument
+     */
     void* free_param;
 };
 typedef struct ipm_context_T ipm_context;
-
-void* ipm_alloc_real(const ipm_context* context, size_t size, const char* file, int line, const char* function);
-
-void ipm_free(const ipm_context* context, void* ptr);
-
-#define ipm_alloc(callbacks, size) ipm_alloc_real((callbacks), (size), __FILE__, __LINE__, __func__)
-
-#ifdef __GNUC__
-__attribute__((format(printf, 2, 6)))
-#endif
-void ipm_report_error(const ipm_context* context, const char* msg, const char* file, int line, const char* function, ...);
-
-#define IPM_ERROR(callbacks, fmt, ...) ipm_report_error((callbacks), (fmt), __FILE__, __LINE__, __func__ __VA_OPT__(,) __VA_ARGS__)
 
 #endif //IPM_IPM_COMMON_H

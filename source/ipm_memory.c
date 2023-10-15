@@ -4,6 +4,7 @@
 
 #include "ipm_memory_internal.h"
 #include "../include/ipm/ipm_memory.h"
+#include "internal.h"
 
 
 static inline size_t round_size(size_t size)

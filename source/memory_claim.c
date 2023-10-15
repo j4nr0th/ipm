@@ -1,7 +1,7 @@
 //
 // Created by jan on 12.10.2023.
 //
-
+#include "internal.h"
 #include "memory_claim.h"
 
 ipm_bool claims_conflict(const ipm_memory_claim* claim_1, const ipm_memory_claim* claim_2)
